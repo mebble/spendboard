@@ -7,7 +7,12 @@ import {
   FieldType,
 } from '@grafana/data';
 
-import { MyQuery, MyDataSourceOptions } from './types';
+import { MyQuery, MyDataSourceOptions, DEFAULT_QUERY } from './types';
+
+type DataPoint = {
+  time: number;
+  value: number;
+}
 
 export class DataSource extends DataSourceApi<MyQuery, MyDataSourceOptions> {
   constructor(instanceSettings: DataSourceInstanceSettings<MyDataSourceOptions>) {
@@ -19,15 +24,21 @@ export class DataSource extends DataSourceApi<MyQuery, MyDataSourceOptions> {
     const from = range!.from.valueOf();
     const to = range!.to.valueOf();
 
-    // Return a constant for each query.
     const data = options.targets.map((target) => {
-      return new MutableDataFrame({
+      target = {
+        ...target,
+        amplitude: target.amplitude ?? DEFAULT_QUERY.amplitude,
+        frequency: target.frequency ?? DEFAULT_QUERY.frequency,
+      }
+      const frame = new MutableDataFrame<DataPoint>({
         refId: target.refId,
         fields: [
-          { name: 'Time', values: [from, to], type: FieldType.time },
-          { name: 'Value', values: [target.constant, target.constant], type: FieldType.number },
+          { name: 'time', type: FieldType.time },
+          { name: 'value', type: FieldType.number },
         ],
       });
+      addSineData(frame, target, from, to);
+      return frame;
     });
 
     return { data };
@@ -39,5 +50,17 @@ export class DataSource extends DataSourceApi<MyQuery, MyDataSourceOptions> {
       status: 'success',
       message: 'Success',
     };
+  }
+}
+
+function addSineData(frame: MutableDataFrame<DataPoint>, query: MyQuery, from: number, to: number) {
+  // duration of the time range, in milliseconds.
+  const duration = to - from;
+
+  // step determines how close in time (ms) the points will be to each other.
+  const step = duration / 1000;
+
+  for (let t = 0; t < duration; t += step) {
+    frame.add({ time: from + t, value: query.amplitude * Math.sin((2 * Math.PI * query.frequency * t) / duration) });
   }
 }
