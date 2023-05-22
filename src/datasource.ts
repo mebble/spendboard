@@ -6,23 +6,31 @@ import {
   MutableDataFrame,
   FieldType,
 } from '@grafana/data';
+import { getBackendSrv } from '@grafana/runtime'
 
 import { MyQuery, MyDataSourceOptions, DEFAULT_QUERY } from './types';
+import { Notion } from 'notion';
+
+const timeKey = 'time'
+const valueKey = 'value'
 
 type DataPoint = {
-  time: number;
-  value: number;
+  [timeKey]: number;
+  [valueKey]: number;
 }
 
 export class DataSource extends DataSourceApi<MyQuery, MyDataSourceOptions> {
+  private readonly notion: Notion;
+
   constructor(instanceSettings: DataSourceInstanceSettings<MyDataSourceOptions>) {
     super(instanceSettings);
+    this.notion = new Notion(getBackendSrv(), instanceSettings.url ?? '')
   }
 
   async query(options: DataQueryRequest<MyQuery>): Promise<DataQueryResponse> {
     const { range } = options;
-    const from = range!.from.valueOf();
-    const to = range!.to.valueOf();
+    const from = range.from;
+    const to = range.to;
 
     const data = options.targets.map((target) => {
       target = {
@@ -33,11 +41,11 @@ export class DataSource extends DataSourceApi<MyQuery, MyDataSourceOptions> {
       const frame = new MutableDataFrame<DataPoint>({
         refId: target.refId,
         fields: [
-          { name: 'time', type: FieldType.time },
-          { name: 'value', type: FieldType.number },
+          { name: timeKey, type: FieldType.time },
+          { name: valueKey, type: FieldType.number },
         ],
       });
-      addSineData(frame, target, from, to);
+      addSineData(frame, target, from.valueOf(), to.valueOf());
       return frame;
     });
 

@@ -7,10 +7,10 @@ interface Props extends DataSourcePluginOptionsEditorProps<MyDataSourceOptions> 
 
 export function ConfigEditor(props: Props) {
   const { onOptionsChange, options } = props;
-  const onPathChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const onDbIdChange = (event: ChangeEvent<HTMLInputElement>) => {
     const jsonData = {
       ...options.jsonData,
-      path: event.target.value,
+      notionDbId: event.target.value,
     };
     onOptionsChange({ ...options, jsonData });
   };
@@ -44,19 +44,19 @@ export function ConfigEditor(props: Props) {
 
   return (
     <div className="gf-form-group">
-      <InlineField label="Path" labelWidth={12}>
+      <InlineField label="Notion Database ID" labelWidth={20}>
         <Input
-          onChange={onPathChange}
-          value={jsonData.path || ''}
-          placeholder="json field returned to frontend"
+          onChange={onDbIdChange}
+          value={jsonData.notionDbId || ''}
+          placeholder="Your Notion DB ID"
           width={40}
         />
       </InlineField>
-      <InlineField label="API Key" labelWidth={12}>
+      <InlineField label="Notion API Key" labelWidth={20}>
         <SecretInput
           isConfigured={(secureJsonFields && secureJsonFields.apiKey) as boolean}
           value={secureJsonData.apiKey || ''}
-          placeholder="secure json field (backend only)"
+          placeholder="Your Notion API Key"
           width={40}
           onReset={onResetAPIKey}
           onChange={onAPIKeyChange}
