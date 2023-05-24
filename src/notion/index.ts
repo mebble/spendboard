@@ -7,7 +7,7 @@ export class Notion {
         private readonly baseUrl: string,
     ) {}
 
-    async getExpensesBetween(from: DateTime, to: DateTime): Promise<ServerResponse<Expense[]>> {
+    async getExpensesBetween(from: DateTime, to: DateTime): Promise<Result<Expense[], NotionError>> {
         try {
             const response = await this.backend.post<NotionResponse>(`${this.baseUrl}/expenses/query`, {
                 filter: {
@@ -33,17 +33,26 @@ export class Notion {
               }));
             return { success: true, data: expenses }
         } catch (error) {
-            return { success: false, error: error as Error }
+            return { success: false, error: error as NotionError }
+        }
+    }
+
+    async getCategories(): Promise<Result<Category[], NotionError>> {
+        try {
+            const response = await this.backend.get<NotionDBSchema>(`${this.baseUrl}/expenses`)
+            return { success: true, data: response.properties.Category.multi_select.options };
+        } catch (error) {
+            return { success: false, error: error as NotionError };
         }
     }
 }
 
-type ServerResponse<T> = {
+type Result<T, E> = {
     success: true,
     data: T
 } | {
     success: false,
-    error: Error
+    error: E
 };
 
 type NotionResponse = {
@@ -92,3 +101,25 @@ type Expense = {
     month: string;
     dayOfWeek: string;
 }
+
+type NotionError = {
+    data: {
+        code: string;
+        message: string;
+    },
+    status: number;
+    statusText: string;
+};
+
+type NotionDBSchema = {
+    title: [{
+        plain_text: string;
+    }],
+    properties: {
+        Category: {
+            multi_select: {
+                options: Category[]
+            }
+        }
+    }
+};

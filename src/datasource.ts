@@ -20,7 +20,7 @@ type DataPoint = {
 }
 
 export class DataSource extends DataSourceApi<MyQuery, MyDataSourceOptions> {
-  private readonly notion: Notion;
+  readonly notion: Notion;
 
   constructor(instanceSettings: DataSourceInstanceSettings<MyDataSourceOptions>) {
     super(instanceSettings);
