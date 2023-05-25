@@ -1,5 +1,6 @@
 import { DateTime } from "@grafana/data";
 import { BackendSrv } from "@grafana/runtime";
+import { Expense, Result } from "types";
 
 export class Notion {
     constructor(
@@ -27,8 +28,6 @@ export class Notion {
                 name: result.properties.Name.title[0].plain_text,
                 amount: result.properties.Amount.number,
                 date: new Date(result.properties.Date.date.start),
-                month: new Date(result.properties.Date.date.start).getMonth().toString(),
-                dayOfWeek: new Date(result.properties.Date.date.start).getDay().toString(),
                 tags: result.properties.Category.multi_select.map((t) => t.name),
               }));
             return { success: true, data: expenses }
@@ -46,14 +45,6 @@ export class Notion {
         }
     }
 }
-
-type Result<T, E> = {
-    success: true,
-    data: T
-} | {
-    success: false,
-    error: E
-};
 
 type NotionResponse = {
     object: string;
@@ -92,15 +83,6 @@ type Category = {
     name: string;
     color: string;
 };
-
-type Expense = {
-    name: string;
-    amount: number;
-    date: Date;
-    tags: string[];
-    month: string;
-    dayOfWeek: string;
-}
 
 type NotionError = {
     data: {

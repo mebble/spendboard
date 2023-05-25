@@ -1,14 +1,10 @@
 import { DataQuery, DataSourceJsonData } from '@grafana/data';
 
 export interface MyQuery extends DataQuery {
-  amplitude: number;
-  frequency: number;
   tags: string[];
 }
 
 export const DEFAULT_QUERY: Omit<MyQuery, 'refId'> = {
-  amplitude: 6.5,
-  frequency: 1.0,
   tags: [],
 };
 
@@ -24,4 +20,19 @@ export interface MyDataSourceOptions extends DataSourceJsonData {
  */
 export interface MySecureJsonData {
   apiKey?: string;
+}
+
+export type Result<T, E> = {
+  success: true,
+  data: T
+} | {
+  success: false,
+  error: E
+};
+
+export type Expense = {
+  name: string;
+  amount: number;
+  date: Date;
+  tags: string[];
 }

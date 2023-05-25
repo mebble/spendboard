@@ -3,21 +3,13 @@ import {
   DataQueryResponse,
   DataSourceApi,
   DataSourceInstanceSettings,
-  MutableDataFrame,
-  FieldType,
 } from '@grafana/data';
 import { getBackendSrv } from '@grafana/runtime'
+import { defaults } from 'lodash';
 
 import { MyQuery, MyDataSourceOptions, DEFAULT_QUERY } from './types';
 import { Notion } from 'notion';
-
-const timeKey = 'time'
-const valueKey = 'value'
-
-type DataPoint = {
-  [timeKey]: number;
-  [valueKey]: number;
-}
+import { queryData } from 'notion/query';
 
 export class DataSource extends DataSourceApi<MyQuery, MyDataSourceOptions> {
   readonly notion: Notion;
@@ -32,21 +24,21 @@ export class DataSource extends DataSourceApi<MyQuery, MyDataSourceOptions> {
     const from = range.from;
     const to = range.to;
 
-    const data = options.targets.map((target) => {
-      target = {
-        ...target,
-        amplitude: target.amplitude ?? DEFAULT_QUERY.amplitude,
-        frequency: target.frequency ?? DEFAULT_QUERY.frequency,
+    const result = await this.notion.getExpensesBetween(from, to)
+    if (!result.success) {
+      return {
+        data: [],
+        error: {
+          status: result.error.status,
+          message: result.error.data.message,
+        }
       }
-      const frame = new MutableDataFrame<DataPoint>({
-        refId: target.refId,
-        fields: [
-          { name: timeKey, type: FieldType.time },
-          { name: valueKey, type: FieldType.number },
-        ],
-      });
-      addSineData(frame, target, from.valueOf(), to.valueOf());
-      return frame;
+    }
+
+    const expenses = result.data
+    const data = options.targets.map((target) => {
+      target = defaults(target, DEFAULT_QUERY);
+      return queryData(expenses, target);
     });
 
     return { data };
@@ -58,17 +50,5 @@ export class DataSource extends DataSourceApi<MyQuery, MyDataSourceOptions> {
       status: 'success',
       message: 'Success',
     };
-  }
-}
-
-function addSineData(frame: MutableDataFrame<DataPoint>, query: MyQuery, from: number, to: number) {
-  // duration of the time range, in milliseconds.
-  const duration = to - from;
-
-  // step determines how close in time (ms) the points will be to each other.
-  const step = duration / 1000;
-
-  for (let t = 0; t < duration; t += step) {
-    frame.add({ time: from + t, value: query.amplitude * Math.sin((2 * Math.PI * query.frequency * t) / duration) });
   }
 }
