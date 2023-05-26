@@ -1,0 +1,1296 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": {
+                    "type": "grafana",
+                    "uid": "-- Grafana --"
+                },
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "type": "dashboard"
+            }
+        ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 2,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "fixedColor": "semi-dark-green",
+                        "mode": "fixed"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "Amount (₹)",
+                        "axisPlacement": "auto",
+                        "fillOpacity": 75,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 1,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "none"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 10,
+                "w": 24,
+                "x": 0,
+                "y": 0
+            },
+            "id": 2,
+            "options": {
+                "barRadius": 0,
+                "barWidth": 0.92,
+                "fullHighlight": true,
+                "groupWidth": 0.7,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "table",
+                    "placement": "bottom",
+                    "showLegend": false
+                },
+                "orientation": "auto",
+                "showValue": "always",
+                "stacking": "none",
+                "text": {
+                    "valueSize": 10
+                },
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                },
+                "xField": "Name",
+                "xTickLabelRotation": 60,
+                "xTickLabelSpacing": 0
+            },
+            "pluginVersion": "9.5.2",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "frequency": 10,
+                    "refId": "A"
+                }
+            ],
+            "title": "Items",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "DayIndex": true,
+                            "MonthIndex": true,
+                            "WeekIndex": true,
+                            "Year": true
+                        },
+                        "indexByName": {},
+                        "renameByName": {}
+                    }
+                }
+            ],
+            "type": "barchart"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "fillOpacity": 80,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 1,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 5,
+                "x": 0,
+                "y": 10
+            },
+            "id": 10,
+            "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": true,
+                "groupWidth": 0.7,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": false
+                },
+                "orientation": "auto",
+                "showValue": "auto",
+                "stacking": "none",
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                },
+                "xField": "Month of year",
+                "xTickLabelRotation": 0,
+                "xTickLabelSpacing": 0
+            },
+            "title": "Spent per month",
+            "transformations": [
+                {
+                    "id": "calculateField",
+                    "options": {
+                        "alias": "Month of year",
+                        "mode": "reduceRow",
+                        "reduce": {
+                            "include": [
+                                "Year",
+                                "Month"
+                            ],
+                            "reducer": "allValues"
+                        }
+                    }
+                },
+                {
+                    "id": "groupBy",
+                    "options": {
+                        "fields": {
+                            "Amount": {
+                                "aggregations": [
+                                    "sum"
+                                ],
+                                "operation": "aggregate"
+                            },
+                            "Day of week": {
+                                "aggregations": []
+                            },
+                            "Foobar": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            },
+                            "Month of year": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            },
+                            "Week of year": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            },
+                            "WeekIndex": {
+                                "aggregations": []
+                            },
+                            "Year": {
+                                "aggregations": []
+                            }
+                        }
+                    }
+                }
+            ],
+            "type": "barchart"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "fillOpacity": 80,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 1,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 8,
+                "x": 5,
+                "y": 10
+            },
+            "id": 8,
+            "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": true,
+                "groupWidth": 0.7,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": false
+                },
+                "orientation": "auto",
+                "showValue": "auto",
+                "stacking": "none",
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                },
+                "xField": "Week of year",
+                "xTickLabelRotation": 45,
+                "xTickLabelSpacing": 0
+            },
+            "title": "Spent per week",
+            "transformations": [
+                {
+                    "id": "calculateField",
+                    "options": {
+                        "alias": "Week of year",
+                        "mode": "reduceRow",
+                        "reduce": {
+                            "include": [
+                                "Year",
+                                "WeekIndex"
+                            ],
+                            "reducer": "allValues"
+                        }
+                    }
+                },
+                {
+                    "id": "groupBy",
+                    "options": {
+                        "fields": {
+                            "Amount": {
+                                "aggregations": [
+                                    "sum"
+                                ],
+                                "operation": "aggregate"
+                            },
+                            "Day of week": {
+                                "aggregations": []
+                            },
+                            "Foobar": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            },
+                            "Week of year": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            },
+                            "WeekIndex": {
+                                "aggregations": []
+                            },
+                            "Year": {
+                                "aggregations": []
+                            }
+                        }
+                    }
+                }
+            ],
+            "type": "barchart"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "fillOpacity": 80,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 1,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 11,
+                "x": 13,
+                "y": 10
+            },
+            "id": 9,
+            "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": true,
+                "groupWidth": 0.7,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": false
+                },
+                "orientation": "auto",
+                "showValue": "auto",
+                "stacking": "none",
+                "text": {
+                    "valueSize": 10
+                },
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                },
+                "xField": "Date",
+                "xTickLabelRotation": 45,
+                "xTickLabelSpacing": 0
+            },
+            "title": "Spent per day",
+            "transformations": [
+                {
+                    "id": "groupBy",
+                    "options": {
+                        "fields": {
+                            "Amount": {
+                                "aggregations": [
+                                    "sum"
+                                ],
+                                "operation": "aggregate"
+                            },
+                            "Date": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            },
+                            "Day of week": {
+                                "aggregations": []
+                            },
+                            "Foobar": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            },
+                            "Week of year": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            },
+                            "WeekIndex": {
+                                "aggregations": []
+                            },
+                            "Year": {
+                                "aggregations": []
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": "convertFieldType",
+                    "options": {
+                        "conversions": [
+                            {
+                                "dateFormat": "MM-DD",
+                                "destinationType": "string",
+                                "targetField": "Date"
+                            }
+                        ],
+                        "fields": {}
+                    }
+                }
+            ],
+            "type": "barchart"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "align": "left",
+                        "cellOptions": {
+                            "type": "auto"
+                        },
+                        "filterable": false,
+                        "inspect": false
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Month"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 76
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Amount"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 117
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Date"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 153
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Name"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 316
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Day of week"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 109
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "WeekIndex"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 98
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Year"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 64
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 10,
+                "w": 16,
+                "x": 0,
+                "y": 18
+            },
+            "id": 3,
+            "options": {
+                "cellHeight": "sm",
+                "footer": {
+                    "countRows": false,
+                    "enablePagination": false,
+                    "fields": [
+                        "Amount"
+                    ],
+                    "reducer": [
+                        "sum"
+                    ],
+                    "show": false
+                },
+                "frameIndex": 0,
+                "showHeader": true,
+                "sortBy": []
+            },
+            "pluginVersion": "9.5.2",
+            "targets": [
+                {
+                    "amplitude": 20,
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "refId": "A"
+                }
+            ],
+            "title": "Items Table",
+            "transformations": [
+                {
+                    "id": "sortBy",
+                    "options": {
+                        "fields": {},
+                        "sort": [
+                            {
+                                "desc": true,
+                                "field": "Date"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "convertFieldType",
+                    "options": {}
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "DayIndex": true,
+                            "MonthIndex": true,
+                            "WeekIndex": true,
+                            "Year": true
+                        },
+                        "indexByName": {},
+                        "renameByName": {}
+                    }
+                }
+            ],
+            "type": "table"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "fillOpacity": 80,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 1,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 10,
+                "w": 8,
+                "x": 16,
+                "y": 18
+            },
+            "id": 4,
+            "options": {
+                "barRadius": 0,
+                "barWidth": 0.8,
+                "fullHighlight": true,
+                "groupWidth": 0.7,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": false
+                },
+                "orientation": "horizontal",
+                "showValue": "auto",
+                "stacking": "none",
+                "tooltip": {
+                    "mode": "single",
+                    "sort": "none"
+                },
+                "xField": "Day of week",
+                "xTickLabelRotation": 0,
+                "xTickLabelSpacing": 0
+            },
+            "pluginVersion": "9.5.2",
+            "title": "Spent by Day of Week",
+            "transformations": [
+                {
+                    "id": "groupBy",
+                    "options": {
+                        "fields": {
+                            "Amount": {
+                                "aggregations": [
+                                    "sum"
+                                ],
+                                "operation": "aggregate"
+                            },
+                            "Date": {
+                                "aggregations": []
+                            },
+                            "Day of week": {
+                                "aggregations": [
+                                    "sum"
+                                ],
+                                "operation": "groupby"
+                            },
+                            "DayIndex": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": "sortBy",
+                    "options": {
+                        "fields": {},
+                        "sort": [
+                            {
+                                "field": "DayIndex"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "DayIndex": true
+                        },
+                        "indexByName": {},
+                        "renameByName": {}
+                    }
+                }
+            ],
+            "type": "barchart"
+        },
+        {
+            "collapsed": false,
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 28
+            },
+            "id": 13,
+            "panels": [],
+            "title": "Tags",
+            "type": "row"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "fillOpacity": 80,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 1,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 6,
+                "x": 0,
+                "y": 29
+            },
+            "id": 6,
+            "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": true,
+                "groupWidth": 0.7,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": false
+                },
+                "orientation": "vertical",
+                "showValue": "always",
+                "stacking": "normal",
+                "text": {
+                    "valueSize": 10
+                },
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                },
+                "xField": "Name",
+                "xTickLabelRotation": 45,
+                "xTickLabelSpacing": 0
+            },
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "refId": "A",
+                    "tags": [
+                        "Food",
+                        "Delivery"
+                    ]
+                }
+            ],
+            "title": "Food Delivery",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "DayIndex": true,
+                            "MonthIndex": true,
+                            "WeekIndex": true,
+                            "Year": true
+                        },
+                        "indexByName": {},
+                        "renameByName": {}
+                    }
+                }
+            ],
+            "type": "barchart"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "fillOpacity": 80,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 1,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 6,
+                "x": 6,
+                "y": 29
+            },
+            "id": 7,
+            "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": true,
+                "groupWidth": 0.7,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": false
+                },
+                "orientation": "vertical",
+                "showValue": "auto",
+                "stacking": "none",
+                "text": {
+                    "valueSize": 10
+                },
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                },
+                "xField": "Name",
+                "xTickLabelRotation": 45,
+                "xTickLabelSpacing": 0
+            },
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "refId": "A",
+                    "tags": [
+                        "Credit"
+                    ]
+                }
+            ],
+            "title": "Credit",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "DayIndex": true,
+                            "MonthIndex": true,
+                            "WeekIndex": true,
+                            "Year": true
+                        },
+                        "indexByName": {},
+                        "renameByName": {}
+                    }
+                }
+            ],
+            "type": "barchart"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "fillOpacity": 80,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 1,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 6,
+                "x": 12,
+                "y": 29
+            },
+            "id": 11,
+            "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": true,
+                "groupWidth": 0.7,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": false
+                },
+                "orientation": "vertical",
+                "showValue": "auto",
+                "stacking": "none",
+                "text": {
+                    "valueSize": 10
+                },
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                },
+                "xField": "Name",
+                "xTickLabelRotation": 45,
+                "xTickLabelSpacing": 0
+            },
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "refId": "A",
+                    "tags": [
+                        "Fuel"
+                    ]
+                }
+            ],
+            "title": "Fuel",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "DayIndex": true,
+                            "MonthIndex": true,
+                            "WeekIndex": true,
+                            "Year": true
+                        },
+                        "indexByName": {},
+                        "renameByName": {}
+                    }
+                }
+            ],
+            "type": "barchart"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "fillOpacity": 80,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 1,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 6,
+                "x": 18,
+                "y": 29
+            },
+            "id": 12,
+            "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": true,
+                "groupWidth": 0.7,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": false
+                },
+                "orientation": "vertical",
+                "showValue": "auto",
+                "stacking": "none",
+                "text": {
+                    "valueSize": 10
+                },
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                },
+                "xField": "Name",
+                "xTickLabelRotation": 45,
+                "xTickLabelSpacing": 0
+            },
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "refId": "A",
+                    "tags": [
+                        "Groceries"
+                    ]
+                }
+            ],
+            "title": "Groceries",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "DayIndex": true,
+                            "MonthIndex": true,
+                            "WeekIndex": true,
+                            "Year": true
+                        },
+                        "indexByName": {},
+                        "renameByName": {}
+                    }
+                }
+            ],
+            "type": "barchart"
+        }
+    ],
+    "refresh": "",
+    "schemaVersion": 38,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+        "list": []
+    },
+    "time": {
+        "from": "now-30d",
+        "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Spendboard",
+    "uid": "b2aad0e8-aaa4-4a1e-b0a4-51b82ea77ced",
+    "version": 19,
+    "weekStart": ""
+}
