@@ -1,4 +1,5 @@
 import { DataQueryResponseData, FieldType, MutableDataFrame } from "@grafana/data";
+import { getWeek } from 'date-fns';
 import { Expense, MyQuery } from "types";
 
 const DateKey = 'Date'
@@ -8,6 +9,8 @@ const MonthKey = 'Month'
 const MonthIndexKey = 'MonthIndex'
 const DayKey = 'Day of week'
 const DayIndexKey = 'DayIndex'
+const WeekIndexKey = 'WeekIndex'
+const YearKey = 'Year'
 const TagsKey = 'Tags'
 
 type DataPoint = {
@@ -15,9 +18,11 @@ type DataPoint = {
     [NameKey]: string;
     [AmountKey]: number;
     [MonthKey]: Month;
-    [MonthIndexKey]: number;
     [DayKey]: Day;
+    [YearKey]: number;
+    [MonthIndexKey]: number;
     [DayIndexKey]: number;
+    [WeekIndexKey]: number;
     [TagsKey]: string[];
 }
 
@@ -35,6 +40,8 @@ export const queryData = (expenses: Expense[], query: MyQuery): DataQueryRespons
             { name: MonthIndexKey, type: FieldType.number },
             { name: DayKey, type: FieldType.string },
             { name: DayIndexKey, type: FieldType.number },
+            { name: WeekIndexKey, type: FieldType.number },
+            { name: YearKey, type: FieldType.number },
             { name: TagsKey, type: FieldType.other },
         ],
     });
@@ -48,6 +55,8 @@ export const queryData = (expenses: Expense[], query: MyQuery): DataQueryRespons
                 MonthIndex: expense.date.getMonth(),
                 'Day of week': day(expense.date),
                 DayIndex: expense.date.getDay(),
+                WeekIndex: getWeek(expense.date),
+                Year: expense.date.getFullYear(),
                 Tags: expense.tags,
             });
         }

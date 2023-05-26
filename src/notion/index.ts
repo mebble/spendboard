@@ -29,7 +29,7 @@ export class Notion {
                 amount: result.properties.Amount.number,
                 date: new Date(result.properties.Date.date.start),
                 tags: result.properties.Category.multi_select.map((t) => t.name),
-              }));
+            }));
             return { success: true, data: expenses }
         } catch (error) {
             return { success: false, error: error as NotionError }
