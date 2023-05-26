@@ -1,14 +1,15 @@
-import { DateTime } from "@grafana/data";
 import { BackendSrv } from "@grafana/runtime";
 import { Expense, Result } from "types";
+import { Category, INotion, NotionDBSchema, NotionError, NotionResponse } from "./types";
+import { endOfDay, startOfDay } from "utils";
 
-export class Notion {
+export class Notion implements INotion {
     constructor(
         private readonly backend: BackendSrv,
         private readonly baseUrl: string,
     ) {}
 
-    async getExpensesBetween(from: DateTime, to: DateTime): Promise<Result<Expense[], NotionError>> {
+    async getExpensesBetween(from: Date, to: Date): Promise<Result<Expense[], NotionError>> {
         try {
             const response = await this.backend.post<NotionResponse>(`${this.baseUrl}/expenses/query`, {
                 filter: {
@@ -45,76 +46,3 @@ export class Notion {
         }
     }
 }
-
-function startOfDay(datetime: DateTime): Date {
-    const date = new Date(datetime.valueOf())
-    date.setUTCHours(0, 0, 0, 0)
-    return date;
-}
-
-
-function endOfDay(datetime: DateTime): Date {
-    const date = new Date(datetime.valueOf())
-    date.setUTCHours(23, 59, 59, 999)
-    return date;
-}
-
-type NotionResponse = {
-    object: string;
-    results: NotionResult[];
-    next_cursor: string;
-    has_more: boolean;
-}
-
-type NotionResult = {
-    properties: {
-        Name: {
-            title: [{
-                plain_text: string,
-            }]
-        },
-        Date: {
-            date: {
-                start: string,
-            }
-        },
-        Amount: {
-            number: number,
-        },
-        Category: {
-            multi_select: Category[]
-        },
-        Comment: {
-            rich_text: [{
-                plain_text: string,
-            }]
-        },
-    };
-}
-
-type Category = {
-    name: string;
-    color: string;
-};
-
-type NotionError = {
-    data: {
-        code: string;
-        message: string;
-    },
-    status: number;
-    statusText: string;
-};
-
-type NotionDBSchema = {
-    title: [{
-        plain_text: string;
-    }],
-    properties: {
-        Category: {
-            multi_select: {
-                options: Category[]
-            }
-        }
-    }
-};

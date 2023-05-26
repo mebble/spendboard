@@ -1,6 +1,7 @@
 import { DataQueryResponseData, FieldType, MutableDataFrame } from "@grafana/data";
 import { getWeek } from 'date-fns';
 import { Expense, MyQuery } from "types";
+import { Month, Day, isSuperset, month, day } from "utils";
 
 const DateKey = 'Date'
 const NameKey = 'Name'
@@ -25,9 +26,6 @@ type DataPoint = {
     [WeekIndexKey]: number;
     [TagsKey]: string[];
 }
-
-type Day = 'Sun' | 'Mon' | 'Tue' | 'Wed' | 'Thu' | 'Fri' | 'Sat';
-type Month = 'Jan' | 'Feb' | 'Mar' | 'Apr' | 'May' | 'Jun' | 'Jul' | 'Aug' | 'Sep' | 'Oct' | 'Nov' | 'Dec';
 
 export const queryData = (expenses: Expense[], query: MyQuery): DataQueryResponseData => {
     const frame = new MutableDataFrame<DataPoint>({
@@ -62,47 +60,4 @@ export const queryData = (expenses: Expense[], query: MyQuery): DataQueryRespons
         }
     }
     return frame;
-}
-
-function month(date: Date): Month {
-    const monthIndex = date.getMonth();
-    const months: Month[] = [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
-    ]
-    return months[monthIndex];
-}
-
-function day(date: Date): Day {
-    const dayIndex = date.getDay();
-    const days: Day[] = [
-        'Sun',
-        'Mon',
-        'Tue',
-        'Wed',
-        'Thu',
-        'Fri',
-        'Sat',
-    ]
-    return days[dayIndex];
-}
-
-function isSuperset<T>(set: Set<T>, subset: Set<T>): boolean {
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set#implementing_basic_set_operations
-    for (const elem of subset) {
-        if (!set.has(elem)) {
-            return false;
-        }
-    }
-    return true;
 }

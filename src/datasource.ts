@@ -10,19 +10,22 @@ import { defaults } from 'lodash';
 import { MyQuery, MyDataSourceOptions, DEFAULT_QUERY } from './types';
 import { Notion } from 'notion';
 import { queryData } from 'notion/query';
+import { INotion } from 'notion/types';
+import { NotionCache } from 'notion/cache';
 
 export class DataSource extends DataSourceApi<MyQuery, MyDataSourceOptions> {
-  readonly notion: Notion;
+  readonly notion: INotion;
 
   constructor(instanceSettings: DataSourceInstanceSettings<MyDataSourceOptions>) {
     super(instanceSettings);
-    this.notion = new Notion(getBackendSrv(), instanceSettings.url ?? '')
+    const notionImpl = new Notion(getBackendSrv(), instanceSettings.url ?? '')
+    this.notion = new NotionCache(notionImpl);
   }
 
   async query(options: DataQueryRequest<MyQuery>): Promise<DataQueryResponse> {
     const { range } = options;
-    const from = range.from;
-    const to = range.to;
+    const from = range.from.toDate();
+    const to = range.to.toDate();
 
     const result = await this.notion.getExpensesBetween(from, to)
     if (!result.success) {
