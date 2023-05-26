@@ -13,8 +13,8 @@ export class Notion {
             const response = await this.backend.post<NotionResponse>(`${this.baseUrl}/expenses/query`, {
                 filter: {
                     and: [
-                        { property: 'Date', date: { on_or_after: new Date(from.valueOf()).toISOString() } },
-                        { property: 'Date', date: { on_or_before: new Date(to.valueOf()).toISOString() } },
+                        { property: 'Date', date: { on_or_after: startOfDay(from).toISOString() } },
+                        { property: 'Date', date: { on_or_before: endOfDay(to).toISOString() } },
                     ],
                 },
                 sorts: [
@@ -44,6 +44,19 @@ export class Notion {
             return { success: false, error: error as NotionError };
         }
     }
+}
+
+function startOfDay(datetime: DateTime): Date {
+    const date = new Date(datetime.valueOf())
+    date.setUTCHours(0, 0, 0, 0)
+    return date;
+}
+
+
+function endOfDay(datetime: DateTime): Date {
+    const date = new Date(datetime.valueOf())
+    date.setUTCHours(23, 59, 59, 999)
+    return date;
 }
 
 type NotionResponse = {
