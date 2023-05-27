@@ -8,11 +8,13 @@ export interface INotion {
 export type NotionResponse = {
     object: string;
     results: NotionResult[];
-    next_cursor: string;
-    has_more: boolean;
-}
+} & MoreResults;
 
-type NotionResult = {
+type MoreResults =
+    | { has_more: true, next_cursor: string }
+    | { has_more: false };
+
+export type NotionResult = {
     properties: {
         Name: {
             title: [{
