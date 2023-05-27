@@ -1,6 +1,6 @@
 import { Result, Expense } from "types";
 import { Category, INotion, NotionError } from "./types";
-import { endOfDay, startOfDay } from "utils";
+import { endOfDay, sleep, startOfDay } from "utils";
 
 export class NotionCache implements INotion {
     private readonly cache: Map<String, Expense[]> = new Map();
@@ -12,6 +12,7 @@ export class NotionCache implements INotion {
     async getExpensesBetween(from: Date, to: Date): Promise<Result<Expense[], NotionError>> {
         const key = this.cacheKey(from, to);
         if (this.cache.has(key)) {
+            await sleep(500);
             return { success: true, data: this.cache.get(key)! }
         }
         const result = await this.notion.getExpensesBetween(from, to);

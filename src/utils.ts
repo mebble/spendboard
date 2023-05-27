@@ -53,3 +53,9 @@ export function isSuperset<T>(set: Set<T>, subset: Set<T>): boolean {
     }
     return true;
 }
+
+export async function sleep(ms: number): Promise<void> {
+    return new Promise(resolve => {
+        setTimeout(resolve, ms);
+    });
+}
