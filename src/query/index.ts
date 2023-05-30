@@ -1,7 +1,8 @@
 import { DataQueryResponseData, FieldType, MutableDataFrame } from "@grafana/data";
 import { getWeek } from 'date-fns';
 import { Expense, MyQuery } from "types";
-import { Month, Day, isSuperset, month, day } from "utils";
+import { Month, Day, month, day } from "utils";
+import { hasTags, notHaveTags } from "./filters";
 
 const DateKey = 'Date'
 const NameKey = 'Name'
@@ -44,7 +45,8 @@ export const queryData = (expenses: Expense[], query: MyQuery): DataQueryRespons
         ],
     });
     for (const expense of expenses) {
-        if (isSuperset(new Set(expense.tags), new Set(query.tags))) {
+        if (hasTags(query, expense)
+            && notHaveTags(query, expense)) {
             frame.add({
                 Date: expense.date.getTime(),
                 Name: expense.name,

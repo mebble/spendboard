@@ -2,10 +2,12 @@ import { DataQuery, DataSourceJsonData } from '@grafana/data';
 
 export interface MyQuery extends DataQuery {
   tags: string[];
+  notTags: string[];
 }
 
 export const DEFAULT_QUERY: Omit<MyQuery, 'refId'> = {
   tags: [],
+  notTags: [],
 };
 
 /**

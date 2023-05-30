@@ -14,6 +14,11 @@ export function QueryEditor({ query, onChange, onRunQuery, datasource }: Props) 
     onRunQuery();
   }
 
+  const onNegativeTagsChange = (tags: Tags) => {
+    onChange({ ...query, notTags: tags.map(t => t.value!) })
+    onRunQuery();
+  }
+
   const onLoadOptions = async (_query: string): Promise<Tags> => {
     const res = await datasource.notion.getCategories()
     if (!res.success) {
@@ -23,13 +28,17 @@ export function QueryEditor({ query, onChange, onRunQuery, datasource }: Props) 
     return res.data.map(d => ({ label: d.name, value: d.name }));
   }
 
-  const { tags } = defaults(query, DEFAULT_QUERY);
+  const { tags, notTags } = defaults(query, DEFAULT_QUERY);
   const selectedTags = tags.map(t => ({ label: t, value: t }));
+  const negativeTags = notTags.map(t => ({ label: t, value: t }))
 
   return (
     <div className="gf-form">
       <InlineField label="Tags">
         <AsyncMultiSelect defaultOptions loadOptions={onLoadOptions} value={selectedTags} onChange={onTagsChange}></AsyncMultiSelect>
+      </InlineField>
+      <InlineField label="Not having tags">
+        <AsyncMultiSelect defaultOptions loadOptions={onLoadOptions} value={negativeTags} onChange={onNegativeTagsChange}></AsyncMultiSelect>
       </InlineField>
     </div>
   );

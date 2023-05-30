@@ -9,7 +9,7 @@ import { defaults } from 'lodash';
 
 import { MyQuery, MyDataSourceOptions, DEFAULT_QUERY } from './types';
 import { Notion } from 'notion';
-import { queryData } from 'notion/query';
+import { queryData } from 'query';
 import { INotion } from 'notion/types';
 import { NotionCache } from 'notion/cache';
 
