@@ -16,3 +16,7 @@ export const notHaveTags: ExpenseFilter = (query, expense) => {
     }
     return true;
 }
+
+export const matchesName: ExpenseFilter = (query, expense) => {
+    return expense.name.toLowerCase().includes(query.name.toLowerCase());
+}

@@ -2,7 +2,7 @@ import { DataQueryResponseData, FieldType, MutableDataFrame } from "@grafana/dat
 import { getWeek } from 'date-fns';
 import { Expense, MyQuery } from "types";
 import { Month, Day, month, day } from "utils";
-import { hasTags, notHaveTags } from "./filters";
+import { hasTags, matchesName, notHaveTags } from "./filters";
 
 const DateKey = 'Date'
 const NameKey = 'Name'
@@ -46,7 +46,8 @@ export const queryData = (expenses: Expense[], query: MyQuery): DataQueryRespons
     });
     for (const expense of expenses) {
         if (hasTags(query, expense)
-            && notHaveTags(query, expense)) {
+            && notHaveTags(query, expense)
+            && matchesName(query, expense)) {
             frame.add({
                 Date: expense.date.getTime(),
                 Name: expense.name,

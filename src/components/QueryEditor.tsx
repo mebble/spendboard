@@ -1,5 +1,5 @@
-import React from 'react';
-import { InlineField, AsyncMultiSelect } from '@grafana/ui';
+import React, { ChangeEvent } from 'react';
+import { InlineField, AsyncMultiSelect, Input } from '@grafana/ui';
 import { QueryEditorProps, SelectableValue } from '@grafana/data';
 import { DataSource } from '../datasource';
 import { DEFAULT_QUERY, MyDataSourceOptions, MyQuery } from '../types';
@@ -19,6 +19,10 @@ export function QueryEditor({ query, onChange, onRunQuery, datasource }: Props) 
     onRunQuery();
   }
 
+  const onNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onChange({ ...query, name: event.target.value })
+  }
+
   const onLoadOptions = async (_query: string): Promise<Tags> => {
     const res = await datasource.notion.getCategories()
     if (!res.success) {
@@ -28,17 +32,20 @@ export function QueryEditor({ query, onChange, onRunQuery, datasource }: Props) 
     return res.data.map(d => ({ label: d.name, value: d.name }));
   }
 
-  const { tags, notTags } = defaults(query, DEFAULT_QUERY);
+  const { tags, notTags, name } = defaults(query, DEFAULT_QUERY);
   const selectedTags = tags.map(t => ({ label: t, value: t }));
   const negativeTags = notTags.map(t => ({ label: t, value: t }))
 
   return (
     <div className="gf-form">
-      <InlineField label="Tags">
+      <InlineField label="Has tags">
         <AsyncMultiSelect defaultOptions loadOptions={onLoadOptions} value={selectedTags} onChange={onTagsChange}></AsyncMultiSelect>
       </InlineField>
       <InlineField label="Not having tags">
         <AsyncMultiSelect defaultOptions loadOptions={onLoadOptions} value={negativeTags} onChange={onNegativeTagsChange}></AsyncMultiSelect>
+      </InlineField>
+      <InlineField label="Name">
+        <Input type="text" placeholder="Your expense's name" value={name} onChange={onNameChange}></Input>
       </InlineField>
     </div>
   );
