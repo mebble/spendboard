@@ -1,3 +1,18 @@
+import { Range } from 'immutable'
+import { isBefore, addDays } from 'date-fns'
+
+export function dateRange(beginDate: Date, endDate: Date): Date[] {
+    if (isBefore(endDate, beginDate)) {
+        return []
+    }
+
+    return Range()
+        .map(i => addDays(beginDate, i))
+        .takeWhile(day => isBefore(day, endDate))
+        .concat(endDate)
+        .toArray()
+}
+
 export function startOfDay(date: Date): Date {
     date.setUTCHours(0, 0, 0, 0)
     return date;

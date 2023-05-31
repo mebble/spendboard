@@ -4,6 +4,7 @@ export interface MyQuery extends DataQuery {
   tags: string[];
   notTags: string[];
   name: string;
+  depreciating?: boolean;
 }
 
 export const DEFAULT_QUERY: Omit<MyQuery, 'refId'> = {
