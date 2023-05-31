@@ -23,6 +23,19 @@
     "liveNow": false,
     "panels": [
         {
+            "collapsed": false,
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 0
+            },
+            "id": 23,
+            "panels": [],
+            "title": "Overview",
+            "type": "row"
+        },
+        {
             "datasource": {
                 "type": "neilsyiemlieh-spendboard-datasource",
                 "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
@@ -58,7 +71,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -74,7 +88,7 @@
                 "h": 10,
                 "w": 24,
                 "x": 0,
-                "y": 0
+                "y": 1
             },
             "id": 2,
             "options": {
@@ -166,7 +180,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -181,7 +196,7 @@
                 "h": 8,
                 "w": 5,
                 "x": 0,
-                "y": 10
+                "y": 11
             },
             "id": 10,
             "options": {
@@ -294,7 +309,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -309,7 +325,7 @@
                 "h": 8,
                 "w": 8,
                 "x": 5,
-                "y": 10
+                "y": 11
             },
             "id": 8,
             "options": {
@@ -418,7 +434,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -433,7 +450,7 @@
                 "h": 8,
                 "w": 11,
                 "x": 13,
-                "y": 10
+                "y": 11
             },
             "id": 9,
             "options": {
@@ -536,7 +553,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -636,7 +654,7 @@
                 "h": 10,
                 "w": 16,
                 "x": 0,
-                "y": 18
+                "y": 19
             },
             "id": 3,
             "options": {
@@ -736,7 +754,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -751,7 +770,7 @@
                 "h": 10,
                 "w": 8,
                 "x": 16,
-                "y": 18
+                "y": 19
             },
             "id": 4,
             "options": {
@@ -835,7 +854,7 @@
                 "h": 1,
                 "w": 24,
                 "x": 0,
-                "y": 28
+                "y": 29
             },
             "id": 13,
             "panels": [],
@@ -877,7 +896,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -892,7 +912,7 @@
                 "h": 8,
                 "w": 6,
                 "x": 0,
-                "y": 29
+                "y": 30
             },
             "id": 6,
             "options": {
@@ -986,7 +1006,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -1001,7 +1022,7 @@
                 "h": 8,
                 "w": 6,
                 "x": 6,
-                "y": 29
+                "y": 30
             },
             "id": 7,
             "options": {
@@ -1094,7 +1115,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -1109,7 +1131,7 @@
                 "h": 8,
                 "w": 6,
                 "x": 12,
-                "y": 29
+                "y": 30
             },
             "id": 11,
             "options": {
@@ -1202,7 +1224,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -1217,7 +1240,7 @@
                 "h": 8,
                 "w": 6,
                 "x": 18,
-                "y": 29
+                "y": 30
             },
             "id": 12,
             "options": {
@@ -1274,6 +1297,1417 @@
                 }
             ],
             "type": "barchart"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "fixedColor": "light-green",
+                        "mode": "fixed"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "currencyINR"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 6,
+                "x": 0,
+                "y": 38
+            },
+            "id": 14,
+            "options": {
+                "colorMode": "none",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "fields": "/^Amount$/",
+                    "values": false
+                },
+                "textMode": "auto"
+            },
+            "pluginVersion": "9.5.2",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "refId": "A",
+                    "tags": [
+                        "Food",
+                        "Delivery"
+                    ]
+                }
+            ],
+            "title": "Food Delivery total",
+            "transformations": [],
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "fixedColor": "light-green",
+                        "mode": "fixed"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "currencyINR"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 6,
+                "x": 6,
+                "y": 38
+            },
+            "id": 15,
+            "options": {
+                "colorMode": "none",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "fields": "/^Amount$/",
+                    "values": false
+                },
+                "textMode": "auto"
+            },
+            "pluginVersion": "9.5.2",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "refId": "A",
+                    "tags": [
+                        "Credit"
+                    ]
+                }
+            ],
+            "title": "Credit total",
+            "transformations": [],
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "fixedColor": "light-green",
+                        "mode": "fixed"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "currencyINR"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 6,
+                "x": 12,
+                "y": 38
+            },
+            "id": 16,
+            "options": {
+                "colorMode": "none",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "fields": "/^Amount$/",
+                    "values": false
+                },
+                "textMode": "auto"
+            },
+            "pluginVersion": "9.5.2",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "refId": "A",
+                    "tags": [
+                        "Fuel"
+                    ]
+                }
+            ],
+            "title": "Fuel total",
+            "transformations": [],
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "fixedColor": "light-green",
+                        "mode": "fixed"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "currencyINR"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 6,
+                "x": 18,
+                "y": 38
+            },
+            "id": 17,
+            "options": {
+                "colorMode": "none",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "fields": "/^Amount$/",
+                    "values": false
+                },
+                "textMode": "auto"
+            },
+            "pluginVersion": "9.5.2",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "refId": "A",
+                    "tags": [
+                        "Groceries"
+                    ]
+                }
+            ],
+            "title": "Groceries total",
+            "transformations": [],
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "fillOpacity": 80,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 1,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 6,
+                "x": 0,
+                "y": 43
+            },
+            "id": 18,
+            "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": true,
+                "groupWidth": 0.7,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": false
+                },
+                "orientation": "vertical",
+                "showValue": "always",
+                "stacking": "normal",
+                "text": {
+                    "valueSize": 10
+                },
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                },
+                "xField": "Name",
+                "xTickLabelRotation": 45,
+                "xTickLabelSpacing": 0
+            },
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "notTags": [
+                        "Delivery",
+                        "Groceries"
+                    ],
+                    "refId": "A",
+                    "tags": [
+                        "Food"
+                    ]
+                }
+            ],
+            "title": "Eating Out",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "DayIndex": true,
+                            "MonthIndex": true,
+                            "WeekIndex": true,
+                            "Year": true
+                        },
+                        "indexByName": {},
+                        "renameByName": {}
+                    }
+                }
+            ],
+            "type": "barchart"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "fillOpacity": 80,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 1,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 6,
+                "x": 6,
+                "y": 43
+            },
+            "id": 20,
+            "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": true,
+                "groupWidth": 0.7,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": false
+                },
+                "orientation": "vertical",
+                "showValue": "always",
+                "stacking": "normal",
+                "text": {
+                    "valueSize": 10
+                },
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                },
+                "xField": "Name",
+                "xTickLabelRotation": 45,
+                "xTickLabelSpacing": 0
+            },
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "name": "KFC",
+                    "notTags": [],
+                    "refId": "A",
+                    "tags": [
+                        "Food"
+                    ]
+                }
+            ],
+            "title": "KFC",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "DayIndex": true,
+                            "MonthIndex": true,
+                            "WeekIndex": true,
+                            "Year": true
+                        },
+                        "indexByName": {},
+                        "renameByName": {}
+                    }
+                }
+            ],
+            "type": "barchart"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "fixedColor": "light-green",
+                        "mode": "fixed"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "currencyINR"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 6,
+                "x": 0,
+                "y": 51
+            },
+            "id": 19,
+            "options": {
+                "colorMode": "none",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "fields": "/^Amount$/",
+                    "values": false
+                },
+                "textMode": "auto"
+            },
+            "pluginVersion": "9.5.2",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "notTags": [
+                        "Groceries",
+                        "Delivery"
+                    ],
+                    "refId": "A",
+                    "tags": [
+                        "Food"
+                    ]
+                }
+            ],
+            "title": "Eating Out total",
+            "transformations": [],
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "fixedColor": "light-green",
+                        "mode": "fixed"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "currencyINR"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 6,
+                "x": 6,
+                "y": 51
+            },
+            "id": 21,
+            "options": {
+                "colorMode": "none",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "fields": "/^Amount$/",
+                    "values": false
+                },
+                "textMode": "auto"
+            },
+            "pluginVersion": "9.5.2",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "name": "KFC",
+                    "notTags": [],
+                    "refId": "A",
+                    "tags": [
+                        "Food"
+                    ]
+                }
+            ],
+            "title": "KFC total",
+            "transformations": [],
+            "type": "stat"
+        },
+        {
+            "collapsed": false,
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 56
+            },
+            "id": 24,
+            "panels": [],
+            "title": "Depreciating expenses",
+            "type": "row"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "fillOpacity": 80,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 1,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "currencyINR"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 9,
+                "w": 24,
+                "x": 0,
+                "y": 57
+            },
+            "id": 22,
+            "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": true,
+                "groupWidth": 0.7,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "orientation": "vertical",
+                "showValue": "always",
+                "stacking": "none",
+                "text": {},
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                },
+                "xField": "Date",
+                "xTickLabelRotation": 45,
+                "xTickLabelSpacing": 0
+            },
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "depreciating": true,
+                    "name": "Whey",
+                    "notTags": [],
+                    "refId": "A",
+                    "tags": [
+                        "Groceries"
+                    ]
+                }
+            ],
+            "title": "Whey",
+            "transformations": [
+                {
+                    "id": "calculateField",
+                    "options": {
+                        "alias": "Cost per week",
+                        "binary": {
+                            "left": "costPerDay",
+                            "operator": "*",
+                            "reducer": "sum",
+                            "right": "7"
+                        },
+                        "mode": "binary",
+                        "reduce": {
+                            "reducer": "sum"
+                        }
+                    }
+                },
+                {
+                    "id": "calculateField",
+                    "options": {
+                        "alias": "Cost per month",
+                        "binary": {
+                            "left": "costPerDay",
+                            "operator": "*",
+                            "reducer": "sum",
+                            "right": "30"
+                        },
+                        "mode": "binary",
+                        "reduce": {
+                            "reducer": "sum"
+                        }
+                    }
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "Amount": true,
+                            "DayIndex": true,
+                            "MonthIndex": true,
+                            "WeekIndex": true,
+                            "Year": true
+                        },
+                        "indexByName": {},
+                        "renameByName": {
+                            "costPerDay": "Cost per day"
+                        }
+                    }
+                }
+            ],
+            "type": "barchart"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "fillOpacity": 80,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 1,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "currencyINR"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 12,
+                "x": 0,
+                "y": 66
+            },
+            "id": 26,
+            "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": true,
+                "groupWidth": 0.7,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "orientation": "vertical",
+                "showValue": "always",
+                "stacking": "none",
+                "text": {},
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                },
+                "xField": "Date",
+                "xTickLabelRotation": 45,
+                "xTickLabelSpacing": 0
+            },
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "depreciating": true,
+                    "name": "avenis",
+                    "notTags": [],
+                    "refId": "A",
+                    "tags": [
+                        "Fuel"
+                    ]
+                }
+            ],
+            "title": "Fuel Avenis",
+            "transformations": [
+                {
+                    "id": "calculateField",
+                    "options": {
+                        "alias": "Cost per week",
+                        "binary": {
+                            "left": "costPerDay",
+                            "operator": "*",
+                            "reducer": "sum",
+                            "right": "7"
+                        },
+                        "mode": "binary",
+                        "reduce": {
+                            "reducer": "sum"
+                        }
+                    }
+                },
+                {
+                    "id": "calculateField",
+                    "options": {
+                        "alias": "Cost per month",
+                        "binary": {
+                            "left": "costPerDay",
+                            "operator": "*",
+                            "reducer": "sum",
+                            "right": "30"
+                        },
+                        "mode": "binary",
+                        "reduce": {
+                            "reducer": "sum"
+                        }
+                    }
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "Amount": false,
+                            "Date": false,
+                            "DayIndex": true,
+                            "MonthIndex": true,
+                            "WeekIndex": true,
+                            "Year": true
+                        },
+                        "indexByName": {},
+                        "renameByName": {
+                            "costPerDay": "Cost per day"
+                        }
+                    }
+                }
+            ],
+            "type": "barchart"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "fillOpacity": 80,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 1,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "currencyINR"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 12,
+                "x": 12,
+                "y": 66
+            },
+            "id": 28,
+            "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": true,
+                "groupWidth": 0.7,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "orientation": "vertical",
+                "showValue": "always",
+                "stacking": "none",
+                "text": {},
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                },
+                "xField": "Date",
+                "xTickLabelRotation": 45,
+                "xTickLabelSpacing": 0
+            },
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "depreciating": true,
+                    "name": "maruti",
+                    "notTags": [],
+                    "refId": "A",
+                    "tags": [
+                        "Fuel"
+                    ]
+                }
+            ],
+            "title": "Fuel Maruti",
+            "transformations": [
+                {
+                    "id": "calculateField",
+                    "options": {
+                        "alias": "Cost per week",
+                        "binary": {
+                            "left": "costPerDay",
+                            "operator": "*",
+                            "reducer": "sum",
+                            "right": "7"
+                        },
+                        "mode": "binary",
+                        "reduce": {
+                            "reducer": "sum"
+                        }
+                    }
+                },
+                {
+                    "id": "calculateField",
+                    "options": {
+                        "alias": "Cost per month",
+                        "binary": {
+                            "left": "costPerDay",
+                            "operator": "*",
+                            "reducer": "sum",
+                            "right": "30"
+                        },
+                        "mode": "binary",
+                        "reduce": {
+                            "reducer": "sum"
+                        }
+                    }
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "Amount": false,
+                            "Date": false,
+                            "DayIndex": true,
+                            "MonthIndex": true,
+                            "WeekIndex": true,
+                            "Year": true
+                        },
+                        "indexByName": {},
+                        "renameByName": {
+                            "costPerDay": "Cost per day"
+                        }
+                    }
+                }
+            ],
+            "type": "barchart"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "fillOpacity": 80,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 1,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "currencyINR"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 12,
+                "x": 0,
+                "y": 74
+            },
+            "id": 25,
+            "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": true,
+                "groupWidth": 0.7,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "orientation": "vertical",
+                "showValue": "always",
+                "stacking": "none",
+                "text": {},
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                },
+                "xField": "Date",
+                "xTickLabelRotation": 45,
+                "xTickLabelSpacing": 0
+            },
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "depreciating": true,
+                    "name": "Youtube premium",
+                    "notTags": [],
+                    "refId": "A",
+                    "tags": []
+                }
+            ],
+            "title": "Youtube premium",
+            "transformations": [
+                {
+                    "id": "calculateField",
+                    "options": {
+                        "alias": "Cost per week",
+                        "binary": {
+                            "left": "costPerDay",
+                            "operator": "*",
+                            "reducer": "sum",
+                            "right": "7"
+                        },
+                        "mode": "binary",
+                        "reduce": {
+                            "reducer": "sum"
+                        }
+                    }
+                },
+                {
+                    "id": "calculateField",
+                    "options": {
+                        "alias": "Cost per month",
+                        "binary": {
+                            "left": "costPerDay",
+                            "operator": "*",
+                            "reducer": "sum",
+                            "right": "30"
+                        },
+                        "mode": "binary",
+                        "reduce": {
+                            "reducer": "sum"
+                        }
+                    }
+                },
+                {
+                    "disabled": true,
+                    "id": "calculateField",
+                    "options": {
+                        "alias": "Cost per year",
+                        "binary": {
+                            "left": "costPerDay",
+                            "operator": "*",
+                            "reducer": "sum",
+                            "right": "365"
+                        },
+                        "mode": "binary",
+                        "reduce": {
+                            "reducer": "sum"
+                        }
+                    }
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "Amount": true,
+                            "DayIndex": true,
+                            "MonthIndex": true,
+                            "WeekIndex": true,
+                            "Year": true
+                        },
+                        "indexByName": {
+                            "Amount": 2,
+                            "Cost per month": 12,
+                            "Cost per week": 11,
+                            "Cost per year": 13,
+                            "Date": 0,
+                            "Day of week": 5,
+                            "DayIndex": 6,
+                            "Month": 3,
+                            "MonthIndex": 4,
+                            "Name": 1,
+                            "Tags": 9,
+                            "WeekIndex": 7,
+                            "Year": 8,
+                            "costPerDay": 10
+                        },
+                        "renameByName": {
+                            "costPerDay": "Cost per day"
+                        }
+                    }
+                }
+            ],
+            "type": "barchart"
+        },
+        {
+            "datasource": {
+                "type": "neilsyiemlieh-spendboard-datasource",
+                "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "fillOpacity": 80,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 1,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "currencyINR"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 12,
+                "x": 12,
+                "y": 74
+            },
+            "id": 27,
+            "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": true,
+                "groupWidth": 0.7,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "orientation": "vertical",
+                "showValue": "always",
+                "stacking": "none",
+                "text": {},
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                },
+                "xField": "Date",
+                "xTickLabelRotation": 45,
+                "xTickLabelSpacing": 0
+            },
+            "pluginVersion": "9.5.2",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "depreciating": true,
+                    "name": "Netflix",
+                    "notTags": [],
+                    "refId": "A",
+                    "tags": [
+                        "Home",
+                        "Entertainment"
+                    ]
+                }
+            ],
+            "title": "Netflix",
+            "transformations": [
+                {
+                    "id": "calculateField",
+                    "options": {
+                        "alias": "Cost per week",
+                        "binary": {
+                            "left": "costPerDay",
+                            "operator": "*",
+                            "reducer": "sum",
+                            "right": "7"
+                        },
+                        "mode": "binary",
+                        "reduce": {
+                            "reducer": "sum"
+                        }
+                    }
+                },
+                {
+                    "disabled": true,
+                    "id": "calculateField",
+                    "options": {
+                        "alias": "Cost per year",
+                        "binary": {
+                            "left": "costPerDay",
+                            "operator": "*",
+                            "reducer": "sum",
+                            "right": "365"
+                        },
+                        "mode": "binary",
+                        "reduce": {
+                            "reducer": "sum"
+                        }
+                    }
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "Amount": false,
+                            "DayIndex": true,
+                            "MonthIndex": true,
+                            "WeekIndex": true,
+                            "Year": true
+                        },
+                        "indexByName": {},
+                        "renameByName": {
+                            "costPerDay": "Cost per day"
+                        }
+                    }
+                }
+            ],
+            "type": "barchart"
         }
     ],
     "refresh": "",
@@ -1284,13 +2718,13 @@
         "list": []
     },
     "time": {
-        "from": "now-30d",
+        "from": "now-90d",
         "to": "now"
     },
     "timepicker": {},
     "timezone": "",
     "title": "Spendboard",
     "uid": "b2aad0e8-aaa4-4a1e-b0a4-51b82ea77ced",
-    "version": 19,
+    "version": 24,
     "weekStart": ""
 }
