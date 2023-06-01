@@ -9,7 +9,6 @@ export function dateRange(beginDate: Date, endDate: Date): Date[] {
     return Range()
         .map(i => addDays(beginDate, i))
         .takeWhile(day => isBefore(day, endDate))
-        .concat(endDate)
         .toArray()
 }
 

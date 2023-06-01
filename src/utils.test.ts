@@ -9,7 +9,6 @@ describe('dateRange', () => {
             new Date('2022-08-02'),
             new Date('2022-08-03'),
             new Date('2022-08-04'),
-            new Date('2022-08-05')
         ];
         expect(dateRange(begin, end)).toEqual(expected);
     });
@@ -22,7 +21,6 @@ describe('dateRange', () => {
             new Date('2023-02-27'),
             new Date('2023-02-28'),
             new Date('2023-03-01'),
-            new Date('2023-03-02')
         ];
         expect(dateRange(begin, end)).toEqual(expected);
     })
