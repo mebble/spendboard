@@ -14,13 +14,15 @@ export function dateRange(beginDate: Date, endDate: Date): Date[] {
 }
 
 export function startOfDay(date: Date): Date {
-    date.setUTCHours(0, 0, 0, 0)
-    return date;
+    const newDate = new Date(date);
+    newDate.setUTCHours(0, 0, 0, 0)
+    return newDate;
 }
 
 export function endOfDay(date: Date): Date {
-    date.setUTCHours(23, 59, 59, 999)
-    return date;
+    const newDate = new Date(date);
+    newDate.setUTCHours(23, 59, 59, 999)
+    return newDate;
 }
 
 export type Day = 'Sun' | 'Mon' | 'Tue' | 'Wed' | 'Thu' | 'Fri' | 'Sat';
