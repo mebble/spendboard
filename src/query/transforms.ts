@@ -4,6 +4,7 @@ import { Seq } from 'immutable'
 import { Month, Day, month, day, dateRange } from "utils";
 import { Expense, MyQuery } from "types";
 
+const RefIdKey = 'RefId'
 const DateKey = 'Date'
 const NameKey = 'Name'
 const AmountKey = 'Amount'
@@ -16,6 +17,7 @@ const YearKey = 'Year'
 const TagsKey = 'Tags'
 
 type DataPoint = {
+    [RefIdKey]: string;
     [DateKey]: number;
     [NameKey]: string;
     [AmountKey]: number;
@@ -33,6 +35,7 @@ export const identity: ExpenseTransform = (query, expenses) => {
     const frame = new MutableDataFrame<DataPoint>({
         refId: query.refId,
         fields: [
+            { name: RefIdKey, type: FieldType.string },
             { name: DateKey, type: FieldType.time },
             { name: NameKey, type: FieldType.string },
             { name: AmountKey, type: FieldType.number },
@@ -47,6 +50,7 @@ export const identity: ExpenseTransform = (query, expenses) => {
     });
     for (const expense of expenses) {
         frame.add({
+            RefId: query.refId,
             Date: expense.date.getTime(),
             Name: expense.name,
             Amount: expense.amount,
@@ -71,6 +75,7 @@ export const depreciating: ExpenseTransform = (query, expenses) => {
     const frame = new MutableDataFrame<DataPointDepreciating>({
         refId: query.refId,
         fields: [
+            { name: RefIdKey, type: FieldType.string },
             { name: DateKey, type: FieldType.time },
             { name: NameKey, type: FieldType.string },
             { name: AmountKey, type: FieldType.number },
@@ -91,6 +96,7 @@ export const depreciating: ExpenseTransform = (query, expenses) => {
         .forEach(([expense, nextExpense]) => {
             const numDays = dateRange(expense.date, nextExpense.date).length;
             frame.add({
+                RefId: query.refId,
                 Date: expense.date.getTime(),
                 Name: expense.name,
                 Amount: expense.amount,
