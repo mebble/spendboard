@@ -280,6 +280,20 @@
                     "tags": [
                         "Groceries"
                     ]
+                },
+                {
+                    "datasource": {
+                        "type": "neilsyiemlieh-spendboard-datasource",
+                        "uid": "bdbf6b49-72c1-4977-8532-9b7f7d8ba5f5"
+                    },
+                    "depreciating": true,
+                    "hide": false,
+                    "name": "Milk",
+                    "notTags": [],
+                    "refId": "G",
+                    "tags": [
+                        "Groceries"
+                    ]
                 }
             ],
             "title": "Monthly Recurring Expenses",
@@ -325,9 +339,28 @@
                                 "aggregations": []
                             },
                             "Name": {
+                                "aggregations": [
+                                    "uniqueValues"
+                                ],
+                                "operation": "aggregate"
+                            },
+                            "RefId": {
                                 "aggregations": [],
                                 "operation": "groupby"
                             }
+                        }
+                    }
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "RefId": true
+                        },
+                        "indexByName": {},
+                        "renameByName": {
+                            "Cost per month (mean)": "Mean cost per month",
+                            "Name (uniqueValues)": "Recurring Items"
                         }
                     }
                 }
@@ -2922,7 +2955,7 @@
             "type": "barchart"
         }
     ],
-    "refresh": false,
+    "refresh": "",
     "schemaVersion": 38,
     "style": "dark",
     "tags": [],
@@ -2937,6 +2970,6 @@
     "timezone": "",
     "title": "Spendboard",
     "uid": "b2aad0e8-aaa4-4a1e-b0a4-51b82ea77ced",
-    "version": 33,
+    "version": 34,
     "weekStart": ""
 }
