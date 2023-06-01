@@ -296,7 +296,7 @@
                             "left": "costPerDay",
                             "operator": "*",
                             "reducer": "sum",
-                            "right": "30"
+                            "right": "30.44"
                         },
                         "mode": "binary",
                         "reduce": {
@@ -2262,7 +2262,7 @@
                             "left": "costPerDay",
                             "operator": "*",
                             "reducer": "sum",
-                            "right": "30"
+                            "right": "30.44"
                         },
                         "mode": "binary",
                         "reduce": {
@@ -2408,7 +2408,7 @@
                             "left": "costPerDay",
                             "operator": "*",
                             "reducer": "sum",
-                            "right": "30"
+                            "right": "30.44"
                         },
                         "mode": "binary",
                         "reduce": {
@@ -2555,7 +2555,7 @@
                             "left": "costPerDay",
                             "operator": "*",
                             "reducer": "sum",
-                            "right": "30"
+                            "right": "30.44"
                         },
                         "mode": "binary",
                         "reduce": {
@@ -2713,7 +2713,7 @@
                             "left": "costPerDay",
                             "operator": "*",
                             "reducer": "sum",
-                            "right": "30"
+                            "right": "30.44"
                         },
                         "mode": "binary",
                         "reduce": {
@@ -2937,6 +2937,6 @@
     "timezone": "",
     "title": "Spendboard",
     "uid": "b2aad0e8-aaa4-4a1e-b0a4-51b82ea77ced",
-    "version": 31,
+    "version": 33,
     "weekStart": ""
 }
