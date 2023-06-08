@@ -1,5 +1,13 @@
 _Scaffolded with `npx @grafana/create-plugin@latest`_
 
+# Spendboard
+
+_A Grafana datasource plugin_
+
+Check it out in the [Spendboard plugin readme](./src/README.md).
+
+---
+
 # Grafana data source plugin template
 
 This template is a starting point for building a Data Source Plugin for Grafana.

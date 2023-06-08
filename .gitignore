@@ -34,3 +34,5 @@ e2e-results/
 
 .eslintcache
 .env
+mebble-spendboard-datasource*
+.DS_Store
