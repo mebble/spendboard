@@ -13,8 +13,11 @@ A datasource for your expenses on notion.
 
 ## Installation
 
-1. Create a Notion database with the required schema. Copythe database ID from the URL.
-2. Create a Notion integration and copy the integration secret.
+1. Create a Notion database with the following schema and copy the database ID from the URL.
+
+![Notion schema](https://raw.githubusercontent.com/mebble/spendboard/main/src/img/notion-schema.png)
+
+2. Create a [Notion internal integration](https://www.notion.so/help/create-integrations-with-the-notion-api#create-an-internal-integration) and copy the integration secret. Then [connect the integration](https://www.notion.so/help/add-and-manage-connections-with-the-api#add-connections-to-pages) to the database you created above.
 3. In the plugin setup page, enter your Notion database ID and Notion integration secret.
 
 ![Plugin setup page](https://raw.githubusercontent.com/mebble/spendboard/main/src/img/plugin-setup.png)
@@ -29,7 +32,7 @@ When setting up a panel, you can query the Spendboard datasource through the que
 
 ![Graph of all expenses](https://raw.githubusercontent.com/mebble/spendboard/main/src/img/expenses-all.png)
 
-- You can filter for expenses having/not having certain tags and a certain name.
+- You can filter the expenses based on their tags and their name. The tags dropdown menu will display all the tags found in your Notion database.
 
 ![Graph of filtered expenses](https://raw.githubusercontent.com/mebble/spendboard/main/src/img/expenses-filtered.png)
 
