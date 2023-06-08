@@ -17,7 +17,7 @@ A datasource for your expenses on notion.
 2. Create a Notion integration and copy the integration secret.
 3. In the plugin setup page, enter your Notion database ID and Notion integration secret.
 
-![Plugin setup page](./img/plugin-setup.png)
+![Plugin setup page](https://raw.githubusercontent.com/mebble/spendboard/main/src/img/plugin-setup.png)
 
 4. Optionally, you can download a sample dashboard that demonstrates several of the possible panels that can be created.
 
@@ -27,12 +27,12 @@ When setting up a panel, you can query the Spendboard datasource through the que
 
 - By default, each query will return all expenses from Notion within the given time range in descending order.
 
-![Graph of all expenses](./img/expenses-all.png)
+![Graph of all expenses](https://raw.githubusercontent.com/mebble/spendboard/main/src/img/expenses-all.png)
 
 - You can filter for expenses having/not having certain tags and a certain name.
 
-![Graph of filtered expenses](./img/expenses-filtered.png)
+![Graph of filtered expenses](https://raw.githubusercontent.com/mebble/spendboard/main/src/img/expenses-filtered.png)
 
 - You can also transform the expenses to a daily-amortised form.
 
-![Graph of amortised expenses](./img/expenses-amortised.png)
+![Graph of amortised expenses](https://raw.githubusercontent.com/mebble/spendboard/main/src/img/expenses-amortised.png)
