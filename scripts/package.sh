@@ -1,6 +1,12 @@
+#!/bin/bash
+
+version=1.0.0
+distdir=mebble-spendboard-datasource
+zipfile=$distdir-$version.zip
+rm -rf $distdir
+rm $zipfile
 pnpm build
-rm -rf mebble-spendboard-datasource
-mv dist mebble-spendboard-datasource
-zip mebble-spendboard-datasource-1.0.0.zip mebble-spendboard-datasource -r
-md5 mebble-spendboard-datasource-1.0.0.zip
+mv dist $distdir
+zip $zipfile $distdir -r
+md5 $zipfile
 
