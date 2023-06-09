@@ -1,0 +1,19 @@
+# https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch
+on: workflow_dispatch
+
+jobs:
+  validate-plugin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - run: pnpm install
+      - name: Build and zip the plugin
+        run: source ./scripts/package.sh
+      - name: Validate the zip
+        run: docker run --pull=always grafana/plugin-validator-cli file://$(pwd)/$SPENDBOARD_ZIP
