@@ -10,6 +10,6 @@ rm -f $distdir-*.zip
 pnpm build
 mv dist $distdir
 zip $zipfile $distdir -r
-md5 $zipfile
+md5sum $zipfile
 
 export SPENDBOARD_ZIP=$zipfile
