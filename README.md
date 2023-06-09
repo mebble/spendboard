@@ -2,6 +2,9 @@ _Scaffolded with `npx @grafana/create-plugin@latest`_
 
 # Spendboard
 
+[![CI Test Status](https://github.com/mebble/spendboard/workflows/Test/badge.svg)](https://github.com/mebble/spendboard/actions/workflows/test.yml)
+[![CI Package Status](https://github.com/mebble/spendboard/workflows/Package%20and%20validate/badge.svg)](https://github.com/mebble/spendboard/actions/workflows/package.yml)
+
 _A Grafana datasource plugin_
 
 Check it out in the [Spendboard plugin readme](./src/README.md).

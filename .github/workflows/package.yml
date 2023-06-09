@@ -15,7 +15,7 @@ jobs:
         with:
           version: 8
       - run: pnpm install
-      - name: Build and zip the plugin
-        run: source ./scripts/package.sh
-      - name: Validate the zip
-        run: docker run --pull=always grafana/plugin-validator-cli file://$(pwd)/$SPENDBOARD_ZIP
+      - name: Build and validate the plugin
+        run: |
+          source ./scripts/package.sh
+          docker run --pull=always grafana/plugin-validator-cli file://$(pwd)/$SPENDBOARD_ZIP
