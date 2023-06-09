@@ -18,4 +18,4 @@ jobs:
       - name: Build and validate the plugin
         run: |
           source ./scripts/package.sh
-          docker run --pull=always grafana/plugin-validator-cli file:/$(pwd)/$SPENDBOARD_ZIP
+          docker run --pull=always grafana/plugin-validator-cli $(pwd)/$SPENDBOARD_ZIP
