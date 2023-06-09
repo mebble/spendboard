@@ -1,3 +1,5 @@
+name: Package and validate
+
 # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch
 on: workflow_dispatch
 

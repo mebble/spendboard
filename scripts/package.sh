@@ -5,7 +5,7 @@ version=$(node -e 'const p = require("./package.json"); console.log(p.version)')
 zipfile=$distdir-$version.zip
 
 rm -rf $distdir
-rm $distdir-*.zip
+rm -f $distdir-*.zip
 
 pnpm build
 mv dist $distdir
