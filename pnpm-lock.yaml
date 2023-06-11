@@ -78,6 +78,9 @@ devDependencies:
   '@types/react':
     specifier: ^18.2.6
     version: 18.2.6
+  '@typestrong/ts-mockito':
+    specifier: ^2.6.6
+    version: 2.6.6
   copy-webpack-plugin:
     specifier: ^11.0.0
     version: 11.0.0(webpack@5.79.0)
@@ -3339,6 +3342,13 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.42.0
       eslint-visitor-keys: 3.4.1
+    dev: true
+
+  /@typestrong/ts-mockito@2.6.6:
+    resolution: {integrity: sha512-S8nV5NgzejK2IIF/Prnd8U0nDmfviABazqMo8WqsNS4ZtUVeOXJzJF+kgKecKrxvuHylH8a2jUOzzawEk/oDqw==}
+    dependencies:
+      lodash: 4.17.21
+      safe-json-stringify: 1.2.0
     dev: true
 
   /@webassemblyjs/ast@1.11.1:
@@ -9096,6 +9106,10 @@ packages:
 
   /safe-json-parse@1.0.1:
     resolution: {integrity: sha512-o0JmTu17WGUaUOHa1l0FPGXKBfijbxK6qoHzlkihsDXxzBHvJcA7zgviKR92Xs841rX9pK16unfphLq0/KqX7A==}
+    dev: true
+
+  /safe-json-stringify@1.2.0:
+    resolution: {integrity: sha512-gH8eh2nZudPQO6TytOvbxnuhYBOvDBBLW52tz5q6X58lJcd/tkmqFR+5Z9adS8aJtURSXWThWy/xJtJwixErvg==}
     dev: true
 
   /safe-regex-test@1.0.0:
