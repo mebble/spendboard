@@ -16,7 +16,7 @@ export const queryData = (expenses: Expense[], query: MyQuery): DataFrame => {
         const transformed = depreciating(filtered)
         return depreciatingDataFrame(query, transformed);
     } else {
-        return identityDataFrame(query, expenses);
+        return identityDataFrame(query, filtered);
     }
 }
 
