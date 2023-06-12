@@ -1,5 +1,5 @@
 import { Range } from 'immutable'
-import { isBefore, addDays } from 'date-fns'
+import { isBefore, addDays, isSameDay, isAfter } from 'date-fns'
 
 export function dateRange(beginDate: Date, endDate: Date): Date[] {
     if (isBefore(endDate, beginDate)) {
@@ -74,4 +74,10 @@ export async function sleep(ms: number): Promise<void> {
     return new Promise(resolve => {
         setTimeout(resolve, ms);
     });
+}
+
+export function dateBetween(start: Date, end: Date, date: Date) {
+    return isSameDay(date, start)
+        || isSameDay(date, end)
+        || (isAfter(date, start) && isBefore(date, end));
 }
