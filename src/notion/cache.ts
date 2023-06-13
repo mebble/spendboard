@@ -1,10 +1,10 @@
 import { Result, Expense } from "types";
 import { Category, INotion, NotionError } from "./types";
-import { dateBetween, endOfDay, sleep, startOfDay } from "utils";
-import { isAfter, isBefore, isSameDay } from "date-fns";
+import { endOfDay, sleep, startOfDay } from "utils";
+import { isBefore, isAfter, isSameDay, addDays } from "date-fns";
 
 export class NotionCache implements INotion {
-    private readonly cache: Map<String, Expense[]> = new Map();
+    private readonly cache: Map<string, Expense[]> = new Map();
 
     constructor(
         private readonly notion: INotion,
@@ -29,21 +29,24 @@ export class NotionCache implements INotion {
 
 }
 
+type Range = [Date, Date];
+
 export class RangeCache implements INotion {
-    private readonly cache: Map<String, Expense[]> = new Map();
+    private readonly cache: Map<string, Expense[]> = new Map();
 
     constructor(
         private readonly notion: INotion,
     ) {}
 
     async getExpensesBetween(from: Date, to: Date): Promise<Result<Expense[], NotionError>> {
-        if (this.has(from, to)) {
+        const range: Range = [from, to];
+        if (this.has(range)) {
             await sleep(500);
-            return { success: true, data: this.get(from, to) }
+            return { success: true, data: this.get(range) }
         }
         const result = await this.notion.getExpensesBetween(from, to);
         if (result.success) {
-            this.set(from, to, result.data);
+            this.set(range, result.data);
         }
         return result;
     }
@@ -52,36 +55,57 @@ export class RangeCache implements INotion {
         return this.notion.getCategories();
     }
 
-    private has(from: Date, to: Date): boolean {
-        const key = this.matchingKey(from, to);
+    private has(range: Range): boolean {
+        const key = this.matchingKey(range);
         return key !== undefined;
     }
 
-    private get(from: Date, to: Date): Expense[] {
-        const key = this.matchingKey(from, to);
+    private get(range: Range): Expense[] {
+        const key = this.matchingKey(range);
         if (key === undefined) return [];
 
         const expenses = this.cache.get(key)!;
-        return expenses.filter(e => dateBetween(from, to, e.date));
+        return expenses.filter(e => dateBetween(range, e.date));
     }
 
-    private set(from: Date, to: Date, data: Expense[]): void {
-        const key = rangeCacheKey(from, to);
-        this.cache.set(key, data);
+    private set(newRange: Range, newData: Expense[]): void {
+        const newKey = rangeCacheKey(newRange);
+
+        const key = Array.from(this.cache.keys()).find(key => {
+            const range = parseKey(key);
+            return overlap(newRange, range);
+        })
+        if (key === undefined) {
+            this.cache.set(newKey, newData);
+            return;
+        }
+
+        const range = parseKey(key);
+        const mergedRange = merge(newRange, range)
+        const mergedKey = rangeCacheKey(mergedRange)
+
+        const data = this.cache.get(key)!;
+        const mergedData = isBefore(newRange[0], range[0])
+            ? newData.concat(data.filter(d => isAfter(d.date, addDays(newRange[1], 1)))) 
+            : data.concat(newData.filter(d => isAfter(d.date, addDays(range[1], 1))));
+
+        this.cache.set(mergedKey, mergedData);
+        this.cache.delete(key) 
     }
     
-    private matchingKey(from: Date, to: Date): String | undefined {
+    private matchingKey(newRange: Range): string | undefined {
         for (const key of this.cache.keys()) {
-            const [f, t] = key.split(':::').map(d => new Date(d));
-            const withinRange =
-                (isSameDay(f, from) || isBefore(f, from)) &&
-                (isSameDay(t, to) || isAfter(t, to));
-            if (withinRange) {
+            const range = parseKey(key);
+            if (rangeWithin(newRange, range)) {
                 return key;
             }
         }
         return undefined;
     }
+}
+
+function parseKey(key: string): Range {
+    return key.split(':::').map(d => new Date(d)) as Range;
 }
 
 function cacheKey(from: Date, to: Date): string {
@@ -90,9 +114,35 @@ function cacheKey(from: Date, to: Date): string {
     return fromString + toString;
 }
 
-function rangeCacheKey(from: Date, to: Date): string {
+function rangeCacheKey(range: Range): string {
+    const [from, to] = range;
     const fromString = startOfDay(from).toISOString();
     const toString = endOfDay(to).toISOString();
     return fromString + ':::' + toString;
 }
 
+function dateBetween(range: Range, date: Date) {
+    const [start, end] = range;
+    return isSameDay(date, start)
+        || isSameDay(date, end)
+        || (isAfter(date, start) && isBefore(date, end));
+}
+
+function rangeWithin(subRange: Range, superRange: Range): boolean {
+    const [f1, t1] = subRange;
+    const [f2, t2] = superRange;
+    return (isSameDay(f1, f2) || isAfter(f1, f2))
+        && (isSameDay(t1, t2) || isBefore(t1, t2));
+}
+
+function overlap(range1: Range, range2: Range) {
+    const [from, to] = range1;
+    return dateBetween(range2, from) || dateBetween(range2, to);
+}
+
+function merge(range1: Range, range2: Range): Range {
+    const datesInMillis = [...range1, ...range2].map(d => d.getTime())
+    const from = new Date(Math.min(...datesInMillis));
+    const to = new Date(Math.max(...datesInMillis));
+    return [from, to];
+}
