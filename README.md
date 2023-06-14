@@ -1,5 +1,3 @@
-_Scaffolded with `npx @grafana/create-plugin@latest`_
-
 # Spendboard
 
 [![CI Test Status](https://github.com/mebble/spendboard/workflows/Test/badge.svg)](https://github.com/mebble/spendboard/actions/workflows/test.yml)
@@ -10,6 +8,8 @@ _A Grafana datasource plugin_
 Check it out in the [Spendboard plugin readme](./src/README.md).
 
 ---
+
+_Scaffolded with `npx @grafana/create-plugin@latest`_
 
 # Grafana data source plugin template
 
@@ -115,9 +115,10 @@ If the plugin is using the github actions supplied with `@grafana/create-plugin`
 
 To trigger the workflow we need to push a version tag to github. This can be achieved with the following steps:
 
-1. Run `npm version --no-git-tag-version <major|minor|patch>`
-2. Run `git push origin main --follow-tags`
-
+1. Run `pnpm version --no-git-tag-version <major|minor|patch>`
+2. Run `git commit`
+3. Run `git tag v<new-version>`
+4. Run `git push origin main --follow-tags`
 
 ## Learn more
 

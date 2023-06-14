@@ -11,7 +11,7 @@ import { MyQuery, MyDataSourceOptions, DEFAULT_QUERY } from './types';
 import { Notion } from 'notion';
 import { queryData } from 'query';
 import { INotion } from 'notion/types';
-import { NotionCache } from 'notion/cache';
+import { RangeCache } from 'notion/cache';
 
 export class DataSource extends DataSourceApi<MyQuery, MyDataSourceOptions> {
   readonly notion: INotion;
@@ -19,7 +19,7 @@ export class DataSource extends DataSourceApi<MyQuery, MyDataSourceOptions> {
   constructor(instanceSettings: DataSourceInstanceSettings<MyDataSourceOptions>) {
     super(instanceSettings);
     const notionImpl = new Notion(getBackendSrv(), instanceSettings.url ?? '')
-    this.notion = new NotionCache(notionImpl);
+    this.notion = new RangeCache(notionImpl);
   }
 
   async query(options: DataQueryRequest<MyQuery>): Promise<DataQueryResponse> {

@@ -1,6 +1,6 @@
 {
   "name": "spendboard",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A datasource for your expenses on notion",
   "scripts": {
     "build": "webpack -c ./.config/webpack/webpack.config.ts --env production",
