@@ -111,7 +111,71 @@ describe('range cache: getExpensesBetween', () => {
             expect(actual).toEqual(expected);
         })
 
-        test.todo('multiple overlap merge')
+        test('multiple overlap merge: should cache hit', async () => {
+            const d1 = new Date('2023-01-01'); 
+            const da = new Date('2023-01-03'); 
+            const d2 = new Date('2023-01-05');
+            const db = new Date('2023-01-07'); 
+            const d3 = new Date('2023-01-10');
+            const dc = new Date('2023-01-11'); 
+            const d4 = new Date('2023-01-15');
+
+            const res1: Result<Expense[], NotionError> = {
+                success: true,
+                data: [
+                    fromPartial({ date: d1 }),
+                    fromPartial({ date: da }),
+                    fromPartial({ date: d2 }),
+                ]
+            };
+            const res2: Result<Expense[], NotionError> = {
+                success: true,
+                data: [
+                    fromPartial({ date: d3 }),
+                    fromPartial({ date: dc }),
+                    fromPartial({ date: d4 }),
+                ]
+            }
+            const res3: Result<Expense[], NotionError> = {
+                success: true,
+                data: [
+                    fromPartial({ date: d2 }),
+                    fromPartial({ date: db }),
+                    fromPartial({ date: d3 }),
+                ]
+            }
+            const expected: Result<Expense[], NotionError> = {
+                success: true,
+                data: [
+                    fromPartial({ date: da }),
+                    fromPartial({ date: d2 }),
+                    fromPartial({ date: db }),
+                    fromPartial({ date: d3 }),
+                    fromPartial({ date: dc }),
+                ]
+            }
+
+            when(notion.getExpensesBetween(d1, d2))
+                .thenResolve(res1)
+            when(notion.getExpensesBetween(d3, d4))
+                .thenResolve(res2)
+            when(notion.getExpensesBetween(d2, d3))
+                .thenResolve(res3)
+
+            const cache = new RangeCache(instance(notion));
+ 
+            await cache.getExpensesBetween(d1, d2);
+            verify(notion.getExpensesBetween(anything(), anything())).once();
+            await cache.getExpensesBetween(d3, d4); 
+            verify(notion.getExpensesBetween(anything(), anything())).twice();
+            await cache.getExpensesBetween(d2, d3); 
+            verify(notion.getExpensesBetween(anything(), anything())).thrice();
+
+            // this date range should not be a subset of any of the previously queried date ranges
+            const actual = await cache.getExpensesBetween(da, dc);
+            verify(notion.getExpensesBetween(anything(), anything())).thrice();
+            expect(actual).toEqual(expected);
+        })
     })
 
     describe('cache hit', () => {

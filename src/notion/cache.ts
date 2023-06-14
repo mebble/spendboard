@@ -1,7 +1,7 @@
 import { Result, Expense } from "types";
 import { Category, INotion, NotionError } from "./types";
 import { endOfDay, sleep, startOfDay } from "utils";
-import { isBefore, isAfter, isSameDay, addDays } from "date-fns";
+import { isBefore, isAfter, isSameDay } from "date-fns";
 
 export class NotionCache implements INotion {
     private readonly cache: Map<string, Expense[]> = new Map();
@@ -62,35 +62,36 @@ export class RangeCache implements INotion {
 
     private get(range: Range): Expense[] {
         const key = this.matchingKey(range);
-        if (key === undefined) return [];
+        if (key === undefined) {
+            return [];
+        }
 
         const expenses = this.cache.get(key)!;
         return expenses.filter(e => dateBetween(range, e.date));
     }
 
     private set(newRange: Range, newData: Expense[]): void {
-        const newKey = rangeCacheKey(newRange);
-
-        const key = Array.from(this.cache.keys()).find(key => {
+        const keys = Array.from(this.cache.keys()).filter(key => {
             const range = parseKey(key);
             return overlap(newRange, range);
         })
-        if (key === undefined) {
-            this.cache.set(newKey, newData);
-            return;
+
+        let mergedRange = newRange;
+        let mergedKey = rangeCacheKey(mergedRange);
+        let mergedData = newData;
+        for (const key of keys) {
+            const range = parseKey(key);
+            const data = this.cache.get(key)!;
+
+            mergedData = isBefore(mergedRange[0], range[0])
+                ? mergedData.concat(data.filter(d => isAfter(d.date, mergedRange[1]))) 
+                : data.concat(mergedData.filter(d => isAfter(d.date, range[1])));
+            mergedRange = merge(mergedRange, range)
+            mergedKey = rangeCacheKey(mergedRange)
+
+            this.cache.delete(key)
         }
-
-        const range = parseKey(key);
-        const mergedRange = merge(newRange, range)
-        const mergedKey = rangeCacheKey(mergedRange)
-
-        const data = this.cache.get(key)!;
-        const mergedData = isBefore(newRange[0], range[0])
-            ? newData.concat(data.filter(d => isAfter(d.date, addDays(newRange[1], 1)))) 
-            : data.concat(newData.filter(d => isAfter(d.date, addDays(range[1], 1))));
-
         this.cache.set(mergedKey, mergedData);
-        this.cache.delete(key) 
     }
     
     private matchingKey(newRange: Range): string | undefined {
