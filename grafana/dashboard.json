@@ -18,7 +18,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 2,
+    "id": 10,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -166,11 +166,24 @@
                     },
                     "unit": "currencyINR"
                 },
-                "overrides": []
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Recurring Items"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 215
+                            }
+                        ]
+                    }
+                ]
             },
             "gridPos": {
                 "h": 10,
-                "w": 7,
+                "w": 6,
                 "x": 0,
                 "y": 11
             },
@@ -185,7 +198,13 @@
                     ],
                     "show": true
                 },
-                "showHeader": true
+                "showHeader": true,
+                "sortBy": [
+                    {
+                        "desc": true,
+                        "displayName": "Mean cost per month"
+                    }
+                ]
             },
             "pluginVersion": "9.5.2",
             "targets": [
@@ -331,6 +350,211 @@
             "fieldConfig": {
                 "defaults": {
                     "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        }
+                    },
+                    "mappings": [],
+                    "unit": "currencyINR"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 10,
+                "w": 4,
+                "x": 6,
+                "y": 11
+            },
+            "id": 30,
+            "options": {
+                "displayLabels": [
+                    "percent",
+                    "value"
+                ],
+                "legend": {
+                    "displayMode": "table",
+                    "placement": "right",
+                    "showLegend": false,
+                    "values": []
+                },
+                "pieType": "donut",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": true
+                },
+                "tooltip": {
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "9.5.2",
+            "targets": [
+                {
+                    "depreciating": true,
+                    "name": "Avenis",
+                    "notTags": [],
+                    "refId": "A",
+                    "tags": [
+                        "Fuel"
+                    ]
+                },
+                {
+                    "depreciating": true,
+                    "hide": false,
+                    "name": "Youtube premium",
+                    "notTags": [],
+                    "refId": "B",
+                    "tags": [
+                        "Home",
+                        "Entertainment"
+                    ]
+                },
+                {
+                    "depreciating": true,
+                    "hide": false,
+                    "name": "Google one",
+                    "notTags": [],
+                    "refId": "C",
+                    "tags": []
+                },
+                {
+                    "depreciating": true,
+                    "hide": false,
+                    "name": "Netflix",
+                    "notTags": [],
+                    "refId": "D",
+                    "tags": []
+                },
+                {
+                    "depreciating": true,
+                    "hide": false,
+                    "name": "Haircut",
+                    "notTags": [],
+                    "refId": "E",
+                    "tags": [
+                        "Grooming"
+                    ]
+                },
+                {
+                    "depreciating": true,
+                    "hide": false,
+                    "name": "Whey",
+                    "notTags": [],
+                    "refId": "F",
+                    "tags": [
+                        "Groceries"
+                    ]
+                },
+                {
+                    "depreciating": true,
+                    "hide": false,
+                    "name": "Milk",
+                    "notTags": [],
+                    "refId": "G",
+                    "tags": [
+                        "Groceries"
+                    ]
+                }
+            ],
+            "title": "Monthly Recurring Expenses",
+            "transformations": [
+                {
+                    "id": "merge",
+                    "options": {}
+                },
+                {
+                    "id": "calculateField",
+                    "options": {
+                        "alias": "Cost per month",
+                        "binary": {
+                            "left": "costPerDay",
+                            "operator": "*",
+                            "reducer": "sum",
+                            "right": "30.44"
+                        },
+                        "mode": "binary",
+                        "reduce": {
+                            "reducer": "sum"
+                        },
+                        "replaceFields": false
+                    }
+                },
+                {
+                    "id": "groupBy",
+                    "options": {
+                        "fields": {
+                            "Cost per month": {
+                                "aggregations": [
+                                    "mean"
+                                ],
+                                "operation": "aggregate"
+                            },
+                            "Date": {
+                                "aggregations": [
+                                    "first",
+                                    "last"
+                                ]
+                            },
+                            "Month": {
+                                "aggregations": []
+                            },
+                            "Name": {
+                                "aggregations": [
+                                    "last"
+                                ],
+                                "operation": "aggregate"
+                            },
+                            "RefId": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "RefId": true
+                        },
+                        "indexByName": {},
+                        "renameByName": {
+                            "Cost per month (mean)": "Mean cost per month",
+                            "Name (last)": "Name",
+                            "Name (uniqueValues)": "Recurring Items"
+                        }
+                    }
+                },
+                {
+                    "id": "rowsToFields",
+                    "options": {
+                        "mappings": [
+                            {
+                                "fieldName": "Mean cost per month",
+                                "handlerKey": "field.value"
+                            },
+                            {
+                                "fieldName": "Name",
+                                "handlerKey": "field.name"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "type": "piechart"
+        },
+        {
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
                         "mode": "thresholds"
                     },
                     "custom": {
@@ -445,8 +669,8 @@
             },
             "gridPos": {
                 "h": 10,
-                "w": 11,
-                "x": 7,
+                "w": 9,
+                "x": 10,
                 "y": 11
             },
             "id": 3,
@@ -563,8 +787,8 @@
             },
             "gridPos": {
                 "h": 10,
-                "w": 6,
-                "x": 18,
+                "w": 5,
+                "x": 19,
                 "y": 11
             },
             "id": 4,
